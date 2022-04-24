@@ -1,0 +1,51 @@
+li {
+    font-weight: 700;
+    text-align: center;
+}
+
+label {
+    font-weight: normal !important;
+}
+
+.check {
+    font-size: 13px;
+}
+
+textarea, input[type=number] {
+    margin-top: 8px;
+    width: 250px;
+}
+
+input, textarea {
+    font-size: 13px;
+}
+
+.detail {
+    font-size: 13px;
+}
+
+.price {
+    font-weight: 700;
+}
+
+.item-lista {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+}
+
+.item-menu {
+    background-color: #2e5b88;
+}
+
+.item-obs {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+input[type=checkbox] {
+    margin-top: 6px;
+    font-weight: 500;
+}

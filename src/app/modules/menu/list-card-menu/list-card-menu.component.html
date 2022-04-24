@@ -1,0 +1,18 @@
+<div>
+  <ul class="list-group">
+    <li *ngFor="let item of dataFiltered" class="list-group-item">
+      <input class="form-check-input me-1" type="checkbox" [(ngModel)]="item.checked" id="check" name="check"
+      (change)="mudouSelecao($event)">
+      <label for="check" class="check">Selecionar Item</label>
+      <div class="item-lista">
+        {{ item.title }}
+        <label class="detail">{{ item.detail }}</label>
+        <label class="price">{{ item.price }}</label>
+      </div>
+      <div class="item-obs" *ngIf="item.checked">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Observação"></textarea>
+        <input type="number" class="form-control" placeholder="Quantidade">
+      </div>
+    </li>
+  </ul>
+</div>
