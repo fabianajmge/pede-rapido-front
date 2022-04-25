@@ -9,7 +9,7 @@ export interface IUser {
   password: string;
   showPassword: boolean;
   code: string;
-  name: string;
+  userName: string;
   tipoUsuario: number;
 }
 
@@ -29,13 +29,17 @@ export class CognitoService {
 
   public signUp(user: IUser): Promise<any> {
     return Auth.signUp({
-      username: user.email,
+      username: user.userName,
       password: user.password,
+      attributes : {
+        email: user.email,
+        // tipoUsuario: user.tipoUsuario
+      }
     });
   }
 
   public confirmSignUp(user: IUser): Promise<any> {
-    return Auth.confirmSignUp(user.email, user.code);
+    return Auth.confirmSignUp(user.userName, user.code);
   }
 
   public signIn(user: IUser): Promise<any> {

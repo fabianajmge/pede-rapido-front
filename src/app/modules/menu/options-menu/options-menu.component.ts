@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { CognitoService } from 'src/app/cognito.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./options-menu.component.css'],
 })
 export class OptionsMenuComponent implements OnInit {
+  isAuthenticated: boolean;
 
-  constructor() {
+  constructor(private cognitoService: CognitoService, private router: Router) {
+    this.isAuthenticated = false;
   }
 
   public ngOnInit(): void {
+    this.cognitoService.isAuthenticated().then((success: boolean) => {
+      this.isAuthenticated = success;
+    });
+  }
+
+  public signOut(): void {
+    this.cognitoService.signOut().then(() => {
+      this.isAuthenticated = false;
+      this.router.navigate(['/login/signIn']);
+    });
+  }
+
+  public signIn(): void {
+    this.cognitoService.signOut().then(() => {
+      this.isAuthenticated = true;
+      this.router.navigate(['/login/signIn']);
+    });
   }
 }

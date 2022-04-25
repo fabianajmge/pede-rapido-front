@@ -15,7 +15,9 @@ export class MainScreenComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams
       .subscribe(params => {
-        this.type = params['type'];
+        if (params['type']) {
+          this.type = params['type'];
+        }
       }
     );
   }
