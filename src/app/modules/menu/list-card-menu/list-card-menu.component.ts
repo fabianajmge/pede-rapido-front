@@ -1,5 +1,5 @@
 import { ItemMenu } from './../../../model/list-item-menu';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'list-card-menu',
@@ -10,6 +10,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
 
   @Input()
   typeSelected: number = 1;
+
+  @Output()
+  itensSelecionados = new EventEmitter<ItemMenu[]>();
 
   dataFiltered: ItemMenu[] = [];
 
@@ -22,7 +25,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       price: 'R$ 25,00',
       pathImage: 'assets/img/hamburguer.jpg',
       checked: false,
-      type: 1
+      type: 1,
+      observacao: "",
+      quantidade: 1
     },
     {
       id: 2,
@@ -32,7 +37,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       price: 'R$ 25,00',
       pathImage: 'assets/img/hamburguer.jpg',
       checked: false,
-      type: 1
+      type: 1,
+      observacao: "",
+      quantidade: 1
     },
     {
       id: 3,
@@ -42,7 +49,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       price: 'R$ 25,00',
       pathImage: 'assets/img/hamburguer.jpg',
       checked: false,
-      type: 2
+      type: 2,
+      observacao: "",
+      quantidade: 1
     },
     {
       id: 4,
@@ -52,7 +61,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       price: 'R$ 25,00',
       pathImage: 'assets/img/hamburguer.jpg',
       checked: false,
-      type: 3
+      type: 3,
+      observacao: "",
+      quantidade: 0
     },
     {
       id: 5,
@@ -62,7 +73,9 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       price: 'R$ 25,00',
       pathImage: 'assets/img/hamburguer.jpg',
       checked: false,
-      type: 3
+      type: 3,
+      observacao: "",
+      quantidade: 1
     },
   ];
 
@@ -81,8 +94,10 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
   }
 
   mudouSelecao(event: any) {
-    console.log(event.target);
+    this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
+  }
 
-    console.log(this.listItemData.filter(item => item.checked));
+  atualizarInfo() {
+    this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
   }
 }

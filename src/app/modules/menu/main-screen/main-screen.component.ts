@@ -1,3 +1,4 @@
+import { ItemMenu } from './../../../model/list-item-menu';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,6 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class MainScreenComponent implements OnInit {
 
   type: number = 1;
+  enviaPedidoDesabilitado = true;
+  listaPedido: ItemMenu[] = [];
+  pedidoEnviado: boolean = false;
+  nomeBotao = 'Enviar Pedido';
 
   constructor(private route: ActivatedRoute) { }
 
@@ -20,6 +25,21 @@ export class MainScreenComponent implements OnInit {
         }
       }
     );
+  }
+
+  recuperaItensSelecionados(event: any) {
+    this.enviaPedidoDesabilitado = event.length === 0;
+    this.listaPedido = event;
+  }
+
+  enviaPedido() {
+    console.log('enviaPedido: ', this.listaPedido);
+    this.pedidoEnviado = true;
+    this.nomeBotao = 'Enviar Pedido Adicional';
+  }
+
+  solicitaConta() {
+    this.enviaPedidoDesabilitado = true;
   }
 
 }

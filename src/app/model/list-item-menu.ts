@@ -6,6 +6,8 @@ export class ItemMenu {
   pathImage: string = '';
   checked: boolean = false;
   type: number = 0;
+  observacao: string = "";
+  quantidade: number = 0;
 }
 
 export class ListItemMenu {

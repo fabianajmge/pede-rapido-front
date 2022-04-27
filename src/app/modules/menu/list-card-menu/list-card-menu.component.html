@@ -10,8 +10,8 @@
         <label class="price">{{ item.price }}</label>
       </div>
       <div class="item-obs" *ngIf="item.checked">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Observação"></textarea>
-        <input type="number" class="form-control" placeholder="Quantidade">
+        <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="item.observacao" (ngModelChange)="atualizarInfo()" rows="2" placeholder="Observação"></textarea>
+        <input type="number" class="form-control" [(ngModel)]="item.quantidade" placeholder="Quantidade" (ngModelChange)="atualizarInfo()">
       </div>
     </li>
   </ul>

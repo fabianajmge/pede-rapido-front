@@ -1,7 +1,14 @@
-<button type="button" disabled class="btn btn-secondary">Enviar Pedido</button>
-<button type="button" disabled class="btn btn-secondary">Solicitar a conta</button>
+<button type="button" [disabled]="enviaPedidoDesabilitado" (click)="enviaPedido()" class="btn btn-secondary">{{ nomeBotao }}</button>
+<button type="button" [disabled]="!pedidoEnviado" class="btn btn-secondary"
+(click)="solicitaConta()">Solicitar a conta</button>
 
-<list-card-menu [typeSelected]="type"></list-card-menu>
+<div class="alert alert-success" *ngIf="pedidoEnviado" role="alert">
+    O pedido foi enviado para a cozinha!
+</div>
 
-<button type="button" disabled class="btn btn-secondary">Enviar Pedido</button>
-<button type="button" disabled class="btn btn-secondary">Solicitar a conta</button>
+<list-card-menu [typeSelected]="type" (itensSelecionados)="recuperaItensSelecionados($event)"></list-card-menu>
+
+<button type="button" [disabled]="enviaPedidoDesabilitado" 
+class="btn btn-secondary" (click)="enviaPedido()">{{ nomeBotao }}</button>
+<button type="button" [disabled]="!pedidoEnviado" class="btn btn-secondary"
+(click)="solicitaConta()">Solicitar a conta</button>

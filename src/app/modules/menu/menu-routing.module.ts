@@ -1,3 +1,4 @@
+import { SecondMenuComponent } from './second-menu/second-menu.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,6 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'menu', component: MainScreenComponent
+  },
+  {
+    path: 'second-menu', component: SecondMenuComponent
   }
 ];
 
