@@ -5,4 +5,4 @@ services:
     restart: always
     ports: 
       - "4200:4200"
-    container_name: ui-pede-rapido
+    container_name: uipederapido
