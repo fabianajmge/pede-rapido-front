@@ -1,8 +1,8 @@
-FROM node as node
+FROM node
 WORKDIR /app
-COPY package.json /app/
-RUN npm i npm@latest -g
+COPY package.json ./
+RUN npm install -g @angular/cli@13.2.0
 RUN npm install
-COPY ./ /app/
-ARG env=prod
-RUN npm start
+COPY . .
+EXPOSE 4200
+CMD npm run start
