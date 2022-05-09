@@ -1,8 +1,9 @@
-FROM node
-WORKDIR /app
-COPY package.json ./
-RUN npm install -g @angular/cli@13.2.0
+FROM node:latest as build
+WORKDIR /usr/local/app
+COPY ./ /usr/local/app/
 RUN npm install
-COPY . .
-EXPOSE 4200
-CMD npm run start
+RUN npm run build
+
+FROM nginx:latest
+COPY --from=build /usr/local/app/dist/pede-rapido /usr/share/nginx/html
+EXPOSE 80
