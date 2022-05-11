@@ -1,11 +1,10 @@
 export class ItemMenu {
   id: number = 0;
-  title: string  = '';
-  detail: string = '';
-  price: string = '';
-  pathImage: string = '';
+  titulo: string  = '';
+  detalhe: string = '';
+  preco: string = '';
   checked: boolean = false;
-  type: number = 0;
+  tipo: number = 0;
   observacao: string = "";
   quantidade: number = 0;
 }

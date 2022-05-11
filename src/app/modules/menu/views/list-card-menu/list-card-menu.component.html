@@ -5,9 +5,9 @@
       (change)="mudouSelecao($event)">
       <label for="check" class="check">Selecionar Item</label>
       <div class="item-lista">
-        {{ item.title }}
-        <label class="detail">{{ item.detail }}</label>
-        <label class="price">{{ item.price }}</label>
+        {{ item.titulo }}
+        <label class="detail">{{ item.detalhe }}</label>
+        <label class="price">{{ item.preco }}</label>
       </div>
       <div class="item-obs" *ngIf="item.checked">
         <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="item.observacao" (ngModelChange)="atualizarInfo()" rows="2" placeholder="Observação"></textarea>

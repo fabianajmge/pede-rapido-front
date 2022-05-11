@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+
+  URL_API_PEDIDO: 'http://localhost:8080',
   
   cognito: {
     userPoolId: 'us-east-1_0sVdlrSMk',

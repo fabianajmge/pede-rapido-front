@@ -1,5 +1,5 @@
-import { SecondMenuComponent } from './second-menu/second-menu.component';
-import { MainScreenComponent } from './main-screen/main-screen.component';
+import { SecondMenuComponent } from './views/second-menu/second-menu.component';
+import { MainScreenComponent } from './views/main-screen/main-screen.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
