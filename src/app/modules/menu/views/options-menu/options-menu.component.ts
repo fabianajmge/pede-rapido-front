@@ -23,6 +23,7 @@ export class OptionsMenuComponent implements OnInit {
   public signOut(): void {
     this.cognitoService.signOut().then(() => {
       this.isAuthenticated = false;
+      this.fecharMenu();
       this.router.navigate(['/login/signIn']);
     });
   }
@@ -30,7 +31,12 @@ export class OptionsMenuComponent implements OnInit {
   public signIn(): void {
     this.cognitoService.signOut().then(() => {
       this.isAuthenticated = true;
+      this.fecharMenu();
       this.router.navigate(['/login/signIn']);
     });
+  }
+
+  fecharMenu() {
+    document.getElementById('navbarNavDropdown')?.classList.remove('show');
   }
 }

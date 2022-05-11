@@ -32,8 +32,7 @@ export class CognitoService {
       username: user.userName,
       password: user.password,
       attributes : {
-        email: user.email,
-        // tipoUsuario: user.tipoUsuario
+        email: user.email
       }
     });
   }
