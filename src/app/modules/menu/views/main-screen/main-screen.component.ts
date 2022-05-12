@@ -1,9 +1,9 @@
+import { PedidoService } from './../../../pedido/service/pedido.service';
+import { ListPedido, Pedido } from './../../../pedido/model/pedido';
 import { take } from 'rxjs';
 import { ItemMenu } from '../../model/list-item-menu';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ListPedido, Pedido } from '../../model/pedido';
-import { PedidoService } from '../../service/pedido.service';
 
 @Component({
   selector: 'app-main-screen',

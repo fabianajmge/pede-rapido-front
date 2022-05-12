@@ -18,4 +18,8 @@ export class PedidoService {
   criarPedido(listaPedido: ListPedido): Observable<any> {
     return this.http.post<ListPedido>(`${this.url}/pedido`, listaPedido);
   }
+
+  getPedidoEmAberto(restauranteId: number): Observable<ListPedido[]> {
+    return this.http.get<ListPedido[]>(`${this.url}/pedido/emAberto?restauranteId=${restauranteId}`);
+  }
 }

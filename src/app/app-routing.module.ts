@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then(l => l.LoginModule),
+  },
+  {
+    path: 'pedido',
+    loadChildren: () => import('./modules/pedido/pedido.module').then(l => l.PedidoModule),
   }
 ];
 
