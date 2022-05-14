@@ -1,9 +1,7 @@
-FROM node:latest as build
-WORKDIR /usr/local/app
-COPY ./ /usr/local/app/
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
 RUN npm install
-RUN npm run build
-
-FROM nginx:latest
-COPY --from=build /usr/local/app/dist/pede-rapido /usr/share/nginx/html
+COPY . .
 EXPOSE 4200
+CMD ["npm", "run", "start"]

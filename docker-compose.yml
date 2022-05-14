@@ -1,8 +1,11 @@
 version: "3.7",
 services:
-  aplicacao:
-    image: ui-pede-rapido
-    restart: always
-    ports: 
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
       - "4200:4200"
-    container_name: uipederapido
+    volumes:
+      - /app/node_modules
+      - .:/app
