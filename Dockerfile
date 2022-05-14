@@ -6,4 +6,4 @@ RUN npm run build
 
 FROM nginx:latest
 COPY --from=build /usr/local/app/dist/pede-rapido /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 4200

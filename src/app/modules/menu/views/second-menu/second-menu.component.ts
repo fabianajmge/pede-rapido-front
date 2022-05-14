@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CognitoService, IUser } from 'src/app/cognito.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +17,8 @@ export class SecondMenuComponent implements OnInit {
   usuarioGarcom: number = 1;
   usuarioCozinha: number = 2;
 
-  constructor(private cognitoService: CognitoService) {
+  constructor(private cognitoService: CognitoService,
+    private router: Router) {
     this.loading = false;
     this.user = {} as IUser;
    }
@@ -30,7 +32,7 @@ export class SecondMenuComponent implements OnInit {
       || this.tipoUsuario == this.usuarioGerente;
 
       if (this.tipoUsuario == this.usuarioCozinha) {
-        console.log('direciona pra tela da cozinha');
+        this.router.navigate(['pedido/fila-cozinha']);
       }
     });
   }
