@@ -10,5 +10,8 @@ export class ListPedido {
     idPedido: number = 0;
     status: string = '';
     itensPedido: Pedido[] = [];
+}
 
+export class ObjectListPedido {
+    listaPedidos: ListPedido[] = [];
 }
