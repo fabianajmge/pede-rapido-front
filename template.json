@@ -10,13 +10,13 @@
             "memoryReservation": 128,
             "name": "f-uipederapido",
             "mountPoints": [],
-            "image": "uipederapido",
+            "image": "DOCKER_IMAGE_NAME",
             "essential": true,
             "portMappings": [
                 {
                     "protocol": "tcp",
-                    "containerPort": 4200,
-                    "hostPort": 4200
+                    "containerPort": 8080,
+                    "hostPort": 8080
                 }
             ],
             "logConfiguration": {
