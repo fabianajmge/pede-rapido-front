@@ -1,3 +1,4 @@
+import { AuthGuardService } from './guards/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -10,6 +11,7 @@ const routes: Routes = [
   {
     path: 'pedido',
     loadChildren: () => import('./modules/pedido/pedido.module').then(l => l.PedidoModule),
+    canActivate: [AuthGuardService],
   }
 ];
 

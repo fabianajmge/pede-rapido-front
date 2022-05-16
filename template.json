@@ -1,0 +1,35 @@
+{
+    "family": "f-uipederapido",
+    "placementConstraints": [],
+    "volumes": [],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "containerDefinitions": [
+        {
+            "memoryReservation": 128,
+            "name": "f-uipederapido",
+            "mountPoints": [],
+            "image": "DOCKER_IMAGE_NAME",
+            "essential": true,
+            "portMappings": [
+                {
+                    "protocol": "tcp",
+                    "containerPort": 4200,
+                    "hostPort": 4200
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "test",
+                    "awslogs-group": "/ecs/f-uipederapido"
+                }
+            },
+            "memory": 1024,
+            "cpu": 0,
+            "volumesFrom": []
+        }
+    ]
+}

@@ -1,3 +1,4 @@
+import { AuthGuardService } from './guards/auth-guard.service';
 import { MenuModule } from './modules/menu/menu.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,7 +19,7 @@ import { OptionsMenuComponent } from './modules/menu/views/options-menu/options-
     MenuModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
