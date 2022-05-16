@@ -83,6 +83,8 @@ export class FilaCozinhaComponent implements OnInit {
     params = params.append('pedidoId', idPedido);
     params = params.append('statusId', this.PREPARO_FINALIZADO);
 
+    console.log('teste');
+
     this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
     .subscribe({
       error: (error) => console.log(error)
