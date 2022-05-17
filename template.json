@@ -14,7 +14,7 @@
             "essential": true,
             "portMappings": [
                 {
-                    "protocol": "tcp",
+                    "protocol": "http",
                     "containerPort": 4200,
                     "hostPort": 4200
                 }
