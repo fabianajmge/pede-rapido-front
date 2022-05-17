@@ -27,7 +27,7 @@
                     "awslogs-group": "/ecs/f-uipederapido"
                 }
             },
-            "memory": 1024,
+            "memory": 8192,
             "cpu": 0,
             "volumesFrom": []
         }
