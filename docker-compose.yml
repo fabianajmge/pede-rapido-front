@@ -1,7 +1,7 @@
-version: "3.7",
+version: "3.7"
 services:
   aplicacao:
-    image: ui-pede-rapido
+    image: uipederapido
     restart: always
     ports: 
       - "4200:4200"
