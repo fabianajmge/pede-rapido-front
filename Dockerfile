@@ -12,4 +12,4 @@ ENV PORT=4200
 
 EXPOSE 4200
 
-CMD ["ng", "serve"]
+CMD [ "npm", "start" ]
