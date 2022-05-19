@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200",
-    "build": "ng build",
+    "build": "ng build start-max",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start-max": "node --max-old-space-size=8192 node_modules/react-native/local-cli/cli.js start"
   },
   "private": true,
   "dependencies": {
