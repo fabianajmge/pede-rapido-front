@@ -20,7 +20,7 @@ export class PedidoService {
   }
 
   getPedidoEmAberto(): Observable<ListPedido[]> {
-    return this.http.get<ListPedido[]>(`${this.url}/pedido/emAberto`);
+    return this.http.get<ListPedido[]>(`${this.url}/pedidoEmAberto`);
   }
 
   getPedidoEmPreparacao(): Observable<ListPedido[]> {
