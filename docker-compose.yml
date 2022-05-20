@@ -1,8 +1,7 @@
 version: "3.7"
 services:
-  aplicacao:
+  uipederapido:
     image: uipederapido
-    restart: always
+    build: .
     ports: 
-      - "4200:4200"
-    container_name: uipederapido
+      - 8081:80
