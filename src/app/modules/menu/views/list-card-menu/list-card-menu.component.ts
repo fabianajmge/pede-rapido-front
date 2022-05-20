@@ -1,3 +1,4 @@
+import { PedidoService } from './../../../pedido/service/pedido.service';
 import { MenuService } from './../../service/menu.service';
 import { ListItemMenu, ItemMenu } from '../../model/list-item-menu';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
@@ -21,7 +22,8 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
   listItemData: ItemMenu[] = [];
 
   constructor(
-    private menuService: MenuService
+    private menuService: MenuService,
+    private pedidoService: PedidoService
   ) {
   }
 
@@ -35,6 +37,11 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       error: (error) => console.log(error)
     }
     );
+
+    this.pedidoService.getPedidoEmAberto().pipe(take(1))
+      .subscribe({
+        error: (error) => console.log(error)
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
