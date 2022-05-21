@@ -1,3 +1,4 @@
+import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 import { CardAddItemComponent } from './views/card-add-item/card-add-item.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { SecondMenuComponent } from './views/second-menu/second-menu.component';
     CommonModule,
     MenuRoutingModule,
     FormsModule
-  ]
+  ],
+  providers: [AuthGuardService]
 })
 export class MenuModule { }
