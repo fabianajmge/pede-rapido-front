@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'menu', component: MainScreenComponent
   },
   {
-    path: 'second-menu', component: SecondMenuComponent, canActivateChild: [AuthGuardService],
+    path: 'second-menu', component: SecondMenuComponent, canActivate: [AuthGuardService],
   }
 ];
 
