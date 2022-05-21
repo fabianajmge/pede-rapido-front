@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class PedidoService {
 
-  url = environment.URL_API_PEDIDO;
+  url = environment.URL;
 
   constructor(
     private http: HttpClient
