@@ -1,3 +1,4 @@
+import { environment } from './../../../../../environments/environment';
 import { HttpParams } from '@angular/common/http';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
 import { take } from 'rxjs';
@@ -17,19 +18,21 @@ export class FilaCozinhaComponent implements OnInit {
   private EM_PREPARACAO = 1;
   private PREPARO_FINALIZADO = 2;
 
+  url = environment.URL_API_PEDIDO;
+
   constructor(
     private pedidoService: PedidoService
   ) { }
 
   ngOnInit(): void {
     new WebSocketConnector(
-      'http://localhost:8080/socket',
+      `${this.url}/socket`,
       '/emAberto',
       this.emAberto.bind(this)
     );
 
     new WebSocketConnector(
-      'http://localhost:8080/socket',
+      `${this.url}/socket`,
       '/emPreparacao',
       this.emPreparacao.bind(this)
     );
