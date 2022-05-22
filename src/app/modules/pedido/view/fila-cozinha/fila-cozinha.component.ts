@@ -18,7 +18,7 @@ export class FilaCozinhaComponent implements OnInit {
   private EM_PREPARACAO = 1;
   private PREPARO_FINALIZADO = 2;
 
-  url = environment.URL;
+  url = environment.URL_API_PEDIDO;
 
   constructor(
     private pedidoService: PedidoService
