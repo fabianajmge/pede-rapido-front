@@ -30,4 +30,8 @@ export class PedidoService {
   atualizarStatusPedido(params: HttpParams): Observable<any> {
     return this.http.put<any>(`${this.url}/pedido`, params);
   }
+
+  fecharConta(params: HttpParams): Observable<any> {
+    return this.http.put<any>(`${this.url}/pedido/fecharConta`, params);
+  }
 }

@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { PedidoService } from './../../../pedido/service/pedido.service';
 import { ListPedido, Pedido } from './../../../pedido/model/pedido';
 import { take } from 'rxjs';
@@ -47,7 +48,8 @@ export class MainScreenComponent implements OnInit {
 
   enviaPedido() {
     this.pedidoEnviado = true;
-    this.nomeBotao = 'Enviar Pedido Adicional';
+    this.enviaPedidoDesabilitado = true;
+    // this.nomeBotao = 'Enviar Pedido Adicional';
 
     this.listaPedido.forEach(i => {
       this.itemPedido.idItemCardapio = i.id;
@@ -67,6 +69,14 @@ export class MainScreenComponent implements OnInit {
 
   solicitaConta() {
     this.enviaPedidoDesabilitado = true;
+
+    let params = new HttpParams();
+    params = params.append('mesaId', this.mesa);
+
+    this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
+    .subscribe({
+      error: (error) => console.log(error)
+    });
   }
 
 }
