@@ -74,7 +74,7 @@ export class MainScreenComponent implements OnInit {
     let params = new HttpParams();
     params = params.append('mesaId', this.mesa);
 
-    this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
+    this.pedidoService.solicitarConta(params).pipe(take(1))
     .subscribe({
       error: (error) => console.log(error)
     });
