@@ -15,6 +15,7 @@ export class MainScreenComponent implements OnInit {
 
   type: number = 1;
   enviaPedidoDesabilitado = true;
+  mesaComPedidoAnterior = false;
   listaPedido: ItemMenu[] = [];
   pedidoEnviado: boolean = false;
   nomeBotao = 'Enviar Pedido';
@@ -47,9 +48,7 @@ export class MainScreenComponent implements OnInit {
   }
 
   enviaPedido() {
-    this.pedidoEnviado = true;
     this.enviaPedidoDesabilitado = true;
-    // this.nomeBotao = 'Enviar Pedido Adicional';
 
     this.listaPedido.forEach(i => {
       this.itemPedido.idItemCardapio = i.id;
@@ -63,7 +62,9 @@ export class MainScreenComponent implements OnInit {
 
     this.pedidoService.criarPedido(this.listaPedidoEnviar).pipe(take(1))
     .subscribe({
-      error: (error) => console.log(error)
+      next : () => this.pedidoEnviado = true,
+      error: () => 
+        this.mesaComPedidoAnterior = true
     });
   }
 

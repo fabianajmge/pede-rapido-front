@@ -6,6 +6,10 @@
     O pedido foi enviado para a cozinha!
 </div>
 
+<div class="alert alert-danger" role="alert" *ngIf="mesaComPedidoAnterior">
+    Já existe um pedido atrelado a esta mesa!
+</div>
+
 <list-card-menu [typeSelected]="type" (itensSelecionados)="recuperaItensSelecionados($event)"></list-card-menu>
 
 <button type="button" [disabled]="enviaPedidoDesabilitado" 
