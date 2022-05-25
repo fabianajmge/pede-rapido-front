@@ -1,4 +1,8 @@
-<div class="container">
+<div>
+  <button type="button" id="btn-cadastrar" class="btn btn-secondary" (click)="openCadastroUsuario()">Cadastro de Usuário</button>
+</div>
+
+<div class="container" *ngIf="apresentaCampos">
   <div class="row justify-content-center my-5">
     <div class="col-12">
       <div class="card">
@@ -17,12 +21,23 @@
           </div>
           <div class="row">
             <div class="input-group mb-3">
-              <select class="custom-select" id="inputGroupSelect02" id="tipoUsuario" name="tipoUsuario" #tipoUsuario="ngModel" [(ngModel)]="user.tipoUsuario">
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="tipoUsuario" name="tipoUsuario" #tipoUsuario="ngModel" [(ngModel)]="user.tipoUsuario">
                 <option selected value="0">Selecione o tipo de usuário</option>
                 <option value="1">Garçom</option>
                 <option value="2">Cozinha</option>
                 <option value="3">Gerente</option>
                 <option value="4">ADM</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group mb-3">
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="idRestaurante" name="idRestaurante" #idRestaurante="ngModel" [(ngModel)]="user.idRestaurante">
+                <option selected value="0">Selecione o restaurante</option>
+                <option *ngFor="let r of restaurantes" 
+                    [value]="r.id">
+                  {{ r.id + ' - '  + r.nome }}
+                </option>
               </select>
             </div>
           </div>
@@ -41,7 +56,7 @@
             <div class="col d-grid">
               <button type="button" (click)="signUp()" class="btn btn-sm btn-success" [disabled]="loading">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
-                Sign up
+                Cadastrar Usuário
               </button>
             </div>
           </div>
@@ -49,7 +64,7 @@
         <div class="card-body" *ngIf="isConfirm">
           <div class="row">
             <div class="col mb-2">
-              <label for="code" class="form-label">Code:</label>
+              <label for="code" class="form-label">Código:</label>
               <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="user.code" class="form-control form-control-sm">
             </div>
           </div>
@@ -57,7 +72,7 @@
             <div class="col d-grid">
               <button type="button" (click)="confirmSignUp()" class="btn btn-sm btn-success" [disabled]="loading">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
-                Confirm
+                Confirmar a conta
               </button>
             </div>
           </div>

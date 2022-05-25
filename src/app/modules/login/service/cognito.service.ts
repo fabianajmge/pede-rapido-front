@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import Amplify, { Auth } from 'aws-amplify';
 
-import { environment } from '../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 export interface IUser {
   email: string;
@@ -11,6 +11,7 @@ export interface IUser {
   code: string;
   userName: string;
   tipoUsuario: number;
+  idRestaurante: number;
 }
 
 @Injectable({
@@ -32,7 +33,9 @@ export class CognitoService {
       username: user.userName,
       password: user.password,
       attributes : {
-        email: user.email
+        email: user.email,
+        'custom:tipoUsuario' : user.tipoUsuario,
+        'custom:idRestaurante': user.idRestaurante
       }
     });
   }

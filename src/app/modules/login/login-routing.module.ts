@@ -1,8 +1,9 @@
+import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    component: ProfileComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'signIn',
@@ -20,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'signUp',
-    component: SignUpComponent,
+    component: SignUpComponent, canActivate: [AuthGuardService]
   },
   {
     path: '**',

@@ -1,4 +1,4 @@
-import { CognitoService, IUser } from './../cognito.service';
+import { CognitoService, IUser } from '../modules/login/service/cognito.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -44,8 +44,10 @@ export class AuthGuardService implements CanActivate {
 
       if (this.tipoUsuario == this.usuarioCozinha) {
         this.router.navigate(['pedido/fila-cozinha']);
+      } else if (this.tipoUsuario == this.usuarioGarcom){
+        this.router.navigate(['pedido/fila-garcom']);
       } else {
-        this.router.navigate(['/second-menu']);
+        this.router.navigate(['/login/signUp']);
       }
     });
 }

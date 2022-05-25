@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CognitoService, IUser } from 'src/app/cognito.service';
+import { CognitoService, IUser } from 'src/app/modules/login/service/cognito.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,6 +44,8 @@ export class SignInComponent {
 
       if (this.tipoUsuario == this.usuarioCozinha) {
         this.router.navigate(['pedido/fila-cozinha']);
+      } else if (this.tipoUsuario == this.usuarioGarcom){
+        this.router.navigate(['pedido/fila-garcom']);
       } else {
         this.router.navigate(['/second-menu']);
       }

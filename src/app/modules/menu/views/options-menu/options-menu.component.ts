@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { CognitoService } from 'src/app/cognito.service';
+import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

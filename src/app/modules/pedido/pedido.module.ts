@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { PedidoRoutingModule } from './pedido-routing.module';
 import { FilaCozinhaComponent } from './view/fila-cozinha/fila-cozinha.component';
+import { FilaGarcomComponent } from './view/fila-garcom/fila-garcom.component';
 
 
 @NgModule({
   declarations: [
-    FilaCozinhaComponent
+    FilaCozinhaComponent,
+    FilaGarcomComponent
   ],
   imports: [
     CommonModule,

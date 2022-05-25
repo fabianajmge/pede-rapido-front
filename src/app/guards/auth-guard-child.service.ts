@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot } from '@angular/router';
-import { CognitoService } from 'src/app/cognito.service';
+import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({

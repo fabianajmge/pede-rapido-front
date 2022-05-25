@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CognitoService, IUser } from "src/app/cognito.service";
+import { CognitoService, IUser } from "src/app/modules/login/service/cognito.service";
 
 @Component({
   selector: 'app-profile',
