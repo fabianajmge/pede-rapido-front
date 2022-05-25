@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsMenuComponent implements OnInit {
   isAuthenticated: boolean;
+  type: number = 1;
+  mesa: number = 0;
 
-  constructor(private cognitoService: CognitoService, private router: Router) {
+  constructor(private cognitoService: CognitoService, private router: Router,
+    private route: ActivatedRoute) {
     this.isAuthenticated = false;
   }
 
@@ -18,12 +21,23 @@ export class OptionsMenuComponent implements OnInit {
     this.cognitoService.isAuthenticated().then((success: boolean) => {
       this.isAuthenticated = success;
     });
+
+    this.route.queryParams
+      .subscribe(params => {
+        if (params['type']) {
+          this.type = params['type'];
+        }
+
+        if (params['table']) {
+          this.mesa = params['table'];
+        }
+      }
+    );
   }
 
   public signOut(): void {
     this.cognitoService.signOut().then(() => {
       this.isAuthenticated = false;
-      this.fecharMenu();
       this.router.navigate(['/login/signIn']);
     });
   }
@@ -31,12 +45,7 @@ export class OptionsMenuComponent implements OnInit {
   public signIn(): void {
     this.cognitoService.signOut().then(() => {
       this.isAuthenticated = true;
-      this.fecharMenu();
       this.router.navigate(['/login/signIn']);
     });
-  }
-
-  fecharMenu() {
-    document.getElementById('navbarNavDropdown')?.classList.remove('show');
   }
 }

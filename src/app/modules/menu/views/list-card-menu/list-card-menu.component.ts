@@ -37,11 +37,6 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
       error: (error) => console.log(error)
     }
     );
-
-    this.pedidoService.getPedidoEmAberto().pipe(take(1))
-      .subscribe({
-        error: (error) => console.log(error)
-      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
