@@ -1,9 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { take } from 'rxjs';
-import { environment } from './../../../../../environments/environment.prod';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
 import { PedidoService } from './../../service/pedido.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-fila-garcom',
@@ -24,7 +24,7 @@ export class FilaGarcomComponent implements OnInit {
   ngOnInit(): void {
     new WebSocketConnector(
       `${this.url}/socket`,
-      '/solicitarConta',
+      '/contaSolicitada',
       this.contaSolicitada.bind(this)
     );
 

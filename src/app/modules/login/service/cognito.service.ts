@@ -28,6 +28,10 @@ export class CognitoService {
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
   }
 
+  getToken() {
+
+  }
+
   public signUp(user: IUser): Promise<any> {
     return Auth.signUp({
       username: user.userName,
@@ -45,7 +49,8 @@ export class CognitoService {
   }
 
   public signIn(user: IUser): Promise<any> {
-    return Auth.signIn(user.email, user.password).then(() => {
+    return Auth.signIn(user.email, user.password).then((i) => {
+      localStorage.setItem('token', i.signInUserSession.idToken.jwtToken);
       this.authenticationSubject.next(true);
     });
   }
