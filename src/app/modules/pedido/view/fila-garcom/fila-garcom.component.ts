@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class FilaGarcomComponent implements OnInit {
 
   pedidosContaSolicitada: any[] = [];
-  url = environment.URL;
+  urlWebSocket = environment.URL_WEBSOCKET;
 
   private FECHADO = 4;
 
@@ -23,7 +23,7 @@ export class FilaGarcomComponent implements OnInit {
 
   ngOnInit(): void {
     new WebSocketConnector(
-      `${this.url}/socket`,
+      `${this.urlWebSocket}/socket`,
       '/contaSolicitada',
       this.contaSolicitada.bind(this)
     );
@@ -35,7 +35,7 @@ export class FilaGarcomComponent implements OnInit {
 
   contaSolicitada(message: any): void {
     console.log('mensagem: ', message);
-    this.contaSolicitada = JSON.parse(message.body);
+    this.pedidosContaSolicitada = JSON.parse(message.body);
   }
 
   start() {

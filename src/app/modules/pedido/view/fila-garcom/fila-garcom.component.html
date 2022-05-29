@@ -4,7 +4,6 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Status</th>
           <th scope="col">Mesa</th>
           <th scope="col">Itens</th>
           <th scope="col">Valor Total</th>
@@ -14,7 +13,6 @@
       <tbody>
         <tr *ngFor="let item of pedidosContaSolicitada">
           <td>{{ item.idPedido }}</td>
-          <td>{{ item.status }}</td>
           <td>{{ item.idMesa }}</td>
           <td>
             <table class="table">
