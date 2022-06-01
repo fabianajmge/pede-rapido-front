@@ -1,9 +1,17 @@
-<div class="alert alert-success" *ngIf="pedidoEnviado" role="alert">
+<div class="alert alert-success texto-centralizado" *ngIf="pedidoEnviado" role="alert">
     O pedido foi enviado para a cozinha!
 </div>
 
-<div class="alert alert-danger" role="alert" *ngIf="mesaComPedidoAnterior">
+<div class="alert alert-danger texto-centralizado" role="alert" *ngIf="mesaComPedidoAnterior">
     Já existe um pedido atrelado a esta mesa!
+</div>
+
+<div class="alert alert-danger texto-centralizado" role="alert" *ngIf="quantidadeInvalida">
+    Quantidade inválida!
+</div>
+
+<div class="alert alert-danger texto-centralizado" role="alert" *ngIf="mesaInvalida">
+    Mesa inválida!
 </div>
 
 <list-card-menu [typeSelected]="type" (itensSelecionados)="recuperaItensSelecionados($event)"></list-card-menu>

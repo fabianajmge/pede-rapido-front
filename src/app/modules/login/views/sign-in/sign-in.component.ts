@@ -17,6 +17,7 @@ export class SignInComponent {
   usuarioGerente: number = 3;
   usuarioGarcom: number = 1;
   usuarioCozinha: number = 2;
+  dadosIncorretos = false;
 
   constructor(private router: Router,
               private cognitoService: CognitoService) {
@@ -28,8 +29,21 @@ export class SignInComponent {
     this.loading = true;
     this.cognitoService.signIn(this.user)
     .then(() => {
+      let login = document.getElementById('login');
+      console.log(login);
+      if (login) {
+        login.removeAttribute('style');
+        login.style.display = 'none';
+      }
+      
+      let logout = document.getElementById('logout');
+      if (logout) {
+        logout.removeAttribute('style');
+        logout.style.display = "hidden";
+      }
       this.redirecionaAcesso();
     }).catch(() => {
+      this.dadosIncorretos = true;
       this.loading = false;
     });
   }

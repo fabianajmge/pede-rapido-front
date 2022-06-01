@@ -48,10 +48,12 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
   }
 
   mudouSelecao(event: any) {
+    console.log('this.itensSelecionados: ' , this.listItemData);
     this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
   }
 
   atualizarInfo() {
+    console.log('this.atualizarInfo: ' , this.listItemData);
     this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
   }
 }

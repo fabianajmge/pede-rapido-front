@@ -5,3 +5,7 @@ button {
 .alert {
     margin-top: 8px;
 }
+
+.texto-centralizado {
+    text-align: center;
+}

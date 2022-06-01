@@ -11,7 +11,7 @@
       </div>
       <div class="item-obs" *ngIf="item.checked">
         <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="item.observacao" (ngModelChange)="atualizarInfo()" rows="2" placeholder="Observação"></textarea>
-        <input type="number" class="form-control" [(ngModel)]="item.quantidade" placeholder="Quantidade" (ngModelChange)="atualizarInfo()">
+        <input type="number" class="form-control" [(ngModel)]="item.quantidade" placeholder="Quantidade" min="1" (ngModelChange)="atualizarInfo()">
       </div>
     </li>
   </ul>

@@ -22,7 +22,8 @@ export class MainScreenComponent implements OnInit {
   listaPedidoEnviar: ListPedido = new ListPedido();
   mesa: number = 0;
   itensPedido: Pedido[] = [];
-  itemPedido: Pedido = new Pedido();
+  quantidadeInvalida = false;
+  mesaInvalida = false;
 
   constructor(private route: ActivatedRoute,
     private pedidoService: PedidoService) {
@@ -50,22 +51,40 @@ export class MainScreenComponent implements OnInit {
   enviaPedido() {
     this.enviaPedidoDesabilitado = true;
 
+    if (this.mesa == 0 || this.mesa == undefined) {
+      this.mesaInvalida = true;
+    } else {
+      this.mesaInvalida = false;
+    }
+
     this.listaPedido.forEach(i => {
-      this.itemPedido.idItemCardapio = i.id;
-      this.itemPedido.observacao = i.observacao;
-      this.itemPedido.quantidade = i.quantidade;
-      this.itensPedido.push(this.itemPedido);
+      let itemPedido = new Pedido();
+      itemPedido.idItemCardapio = i.id;
+      itemPedido.observacao = i.observacao;
+      itemPedido.quantidade = i.quantidade;
+      this.itensPedido.push(itemPedido);
+
+      if (i.quantidade == 0 || i.quantidade == undefined) {
+        this.quantidadeInvalida = true;
+      } else {
+        this.quantidadeInvalida = false;
+      }
     });
 
-    this.listaPedidoEnviar.idMesa = this.mesa;
-    this.listaPedidoEnviar.itensPedido = this.itensPedido;
-
-    this.pedidoService.criarPedido(this.listaPedidoEnviar).pipe(take(1))
-    .subscribe({
-      next : () => this.pedidoEnviado = true,
-      error: () => 
-        this.mesaComPedidoAnterior = true
-    });
+    if (!this.quantidadeInvalida && !this.mesaInvalida) {
+      this.listaPedidoEnviar.idMesa = this.mesa;
+      this.listaPedidoEnviar.itensPedido = this.itensPedido;
+  
+      this.pedidoService.criarPedido(this.listaPedidoEnviar).pipe(take(1))
+      .subscribe({
+        next : () => {
+          this.pedidoEnviado = true,
+          this.listaPedidoEnviar = new ListPedido();
+        },
+        error: () => 
+          this.mesaComPedidoAnterior = true
+      });
+    }
   }
 
   solicitaConta() {
