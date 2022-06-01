@@ -1,3 +1,4 @@
+import { RestauranteService } from './../../../login/service/restaurante.service';
 import { PedidoService } from './../../../pedido/service/pedido.service';
 import { MenuService } from './../../service/menu.service';
 import { ListItemMenu, ItemMenu } from '../../model/list-item-menu';
@@ -14,8 +15,14 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
   @Input()
   typeSelected: number = 1;
 
+  @Input()
+  mesa: number = 0;
+
   @Output()
   itensSelecionados = new EventEmitter<ItemMenu[]>();
+
+  @Input()
+  pedidoEnviado: boolean = false;
 
   dataFiltered: ItemMenu[] = [];
 
@@ -23,37 +30,44 @@ export class ListCardMenuComponent implements OnInit, OnChanges {
 
   constructor(
     private menuService: MenuService,
-    private pedidoService: PedidoService
+    private restauranteService: RestauranteService
   ) {
   }
 
   ngOnInit(): void {
-    this.menuService.getItemsMenu(1).pipe(take(1))
+    this.restauranteService.getRestauranteMesa(this.mesa)
     .subscribe({
-      next: (list: ItemMenu[]) => {
-        this.listItemData = list;
-        this.dataFiltered = this.listItemData.filter(i => i.tipo == this.typeSelected);
-      },
-      error: (error) => console.log(error)
+      next: (restaurante: any) => {
+        this.menuService.getItemsMenu(restaurante.id).pipe(take(1))
+        .subscribe({
+          next: (list: ItemMenu[]) => {
+            this.listItemData = list;
+            this.dataFiltered = this.listItemData.filter(i => i.tipo == this.typeSelected);
+          }
+        }
+        );
+      }
     }
     );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataFiltered = this.listItemData.filter(i => i.tipo == this.typeSelected);
-  }
 
-  openAddItem(event: ItemMenu) {
-    console.log(event);
+    if (this.pedidoEnviado) {
+      this.listItemData.forEach(l => {
+        l.checked = false;
+        l.observacao = "";
+        l.quantidade = 0;
+      });
+    }
   }
 
   mudouSelecao(event: any) {
-    console.log('this.itensSelecionados: ' , this.listItemData);
     this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
   }
 
   atualizarInfo() {
-    console.log('this.atualizarInfo: ' , this.listItemData);
     this.itensSelecionados.emit(this.listItemData.filter(item => item.checked));
   }
 }

@@ -38,7 +38,6 @@ export class AuthGuardService implements CanActivate {
   private redirecionaAcesso(): void {
     this.cognitoService.getUser().then((user: any) => {
       this.tipoUsuario = user.attributes['custom:tipoUsuario'];
-      console.log('user: ', user.attributes['custom:tipoUsuario']);
       this.opcoesAdministrativo = this.tipoUsuario == this.usuarioAdministrativo
       || this.tipoUsuario == this.usuarioGerente;
 

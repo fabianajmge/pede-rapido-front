@@ -1,3 +1,4 @@
+import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { environment } from 'src/environments/environment';
 import { HttpParams } from '@angular/common/http';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
@@ -14,6 +15,7 @@ export class FilaCozinhaComponent implements OnInit {
 
   pedidosEmAberto: any[] = [];
   pedidosEmPreparacao: any[] = [];
+  idRestaurante: number = 0;
 
   private EM_PREPARACAO = 1;
   private PREPARO_FINALIZADO = 2;
@@ -22,7 +24,8 @@ export class FilaCozinhaComponent implements OnInit {
   urlWebSocket = environment.URL_WEBSOCKET;
 
   constructor(
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private cognitoService: CognitoService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +44,11 @@ export class FilaCozinhaComponent implements OnInit {
     setTimeout(() => {
       this.start();
     }, 200);
+
+    this.cognitoService.getUser()
+    .then((user: any) => {
+      this.idRestaurante = user.attributes['custom:idRestaurante'];
+    });
   }
 
   start() {
@@ -60,11 +68,13 @@ export class FilaCozinhaComponent implements OnInit {
   emAberto(message: any): void {
     console.log('mensagem: ', message);
     this.pedidosEmAberto = JSON.parse(message.body);
+    this.pedidosEmAberto = this.pedidosEmAberto.filter(p => p.idRestaurante == this.idRestaurante);
   }
 
   emPreparacao(message: any): void {
     console.log('mensagem: ', message);
     this.pedidosEmPreparacao = JSON.parse(message.body);
+    this.pedidosEmPreparacao = this.pedidosEmPreparacao.filter(p => p.idRestaurante == this.idRestaurante);
   }
 
   iniciarPreparacao(idPedido: number) {

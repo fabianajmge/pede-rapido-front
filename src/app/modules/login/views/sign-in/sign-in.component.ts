@@ -30,7 +30,6 @@ export class SignInComponent {
     this.cognitoService.signIn(this.user)
     .then(() => {
       let login = document.getElementById('login');
-      console.log(login);
       if (login) {
         login.removeAttribute('style');
         login.style.display = 'none';
@@ -52,7 +51,6 @@ export class SignInComponent {
     this.cognitoService.getUser().then((user: any) => {
       this.user = user;
       this.tipoUsuario = user.attributes['custom:tipoUsuario'];
-      console.log('user: ', user.attributes['custom:tipoUsuario']);
       this.opcoesAdministrativo = this.tipoUsuario == this.usuarioAdministrativo
       || this.tipoUsuario == this.usuarioGerente;
 

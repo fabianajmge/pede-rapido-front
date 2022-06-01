@@ -41,6 +41,11 @@ export class MainScreenComponent implements OnInit {
         }
       }
     );
+
+    this.pedidoService.getPedidoAbertoMesa(this.mesa).pipe(take(1))
+    .subscribe({
+      next: () => this.pedidoEnviado = true
+    });
   }
 
   recuperaItensSelecionados(event: any) {

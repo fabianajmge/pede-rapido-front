@@ -7,7 +7,7 @@
       <div class="item-lista">
         {{ item.titulo }}
         <label class="detail">{{ item.detalhe }}</label>
-        <label class="price">{{ item.preco }}</label>
+        <label class="price">{{ item.preco | currency:'BRL' }}</label>
       </div>
       <div class="item-obs" *ngIf="item.checked">
         <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="item.observacao" (ngModelChange)="atualizarInfo()" rows="2" placeholder="Observação"></textarea>

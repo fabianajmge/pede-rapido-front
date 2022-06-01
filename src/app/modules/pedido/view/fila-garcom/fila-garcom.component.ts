@@ -1,3 +1,4 @@
+import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { HttpParams } from '@angular/common/http';
 import { take } from 'rxjs';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
@@ -14,11 +15,13 @@ export class FilaGarcomComponent implements OnInit {
 
   pedidosContaSolicitada: any[] = [];
   urlWebSocket = environment.URL_WEBSOCKET;
+  idRestaurante: number = 0;
 
   private FECHADO = 4;
 
   constructor(
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private cognitoService: CognitoService
   ) { }
 
   ngOnInit(): void {
@@ -31,11 +34,17 @@ export class FilaGarcomComponent implements OnInit {
     setTimeout(() => {
       this.start();
     }, 200);
+
+    this.cognitoService.getUser()
+    .then((user: any) => {
+      this.idRestaurante = user.attributes['custom:idRestaurante'];
+    });
   }
 
   contaSolicitada(message: any): void {
     console.log('mensagem: ', message);
     this.pedidosContaSolicitada = JSON.parse(message.body);
+    this.pedidosContaSolicitada = this.pedidosContaSolicitada.filter(p => p.idRestaurante == this.idRestaurante);
   }
 
   start() {

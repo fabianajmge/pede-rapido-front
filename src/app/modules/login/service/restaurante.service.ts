@@ -18,4 +18,8 @@ export class RestauranteService {
   getRestaurantes(): Observable<Restaurante[]> {
     return this.http.get<Restaurante[]>(`${this.url}/restaurante/restaurantes`);
   }
+
+  getRestauranteMesa(mesaId: number): Observable<Restaurante[]> {
+    return this.http.get<Restaurante[]>(`${this.url}/restaurante/restauranteMesa/${mesaId}`);
+  }
 }

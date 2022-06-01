@@ -38,4 +38,8 @@ export class PedidoService {
   getPedidosContaSolicitada(): Observable<ListPedido[]> {
     return this.http.get<ListPedido[]>(`${this.url}/pedido/contaSolicitada`);
   }
+
+  getPedidoAbertoMesa(mesaId: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/pedido/pedidoAbertoMesa/${mesaId}`);
+  }
 }

@@ -14,9 +14,11 @@
     Mesa inválida!
 </div>
 
-<list-card-menu [typeSelected]="type" (itensSelecionados)="recuperaItensSelecionados($event)"></list-card-menu>
+<list-card-menu [mesa]="mesa" [typeSelected]="type" [pedidoEnviado]="pedidoEnviado || mesaComPedidoAnterior" (itensSelecionados)="recuperaItensSelecionados($event)"></list-card-menu>
 
-<button type="button" [disabled]="enviaPedidoDesabilitado" 
-class="btn btn-secondary" (click)="enviaPedido()">{{ nomeBotao }}</button>
-<button type="button" [disabled]="!pedidoEnviado" class="btn btn-secondary"
-(click)="solicitaConta()">Solicitar a conta</button>
+<div class="botoes">
+    <button type="button" [disabled]="enviaPedidoDesabilitado" 
+    class="btn btn-secondary" (click)="enviaPedido()">{{ nomeBotao }}</button>
+    <button type="button" [disabled]="!pedidoEnviado" class="btn btn-secondary"
+    (click)="solicitaConta()">Solicitar a conta</button>
+</div>
