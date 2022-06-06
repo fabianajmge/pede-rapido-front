@@ -37,7 +37,6 @@ export class SignUpComponent implements OnInit {
 
   public signUp(): void {
     this.loading = true;
-    this.apresentaCampos = false;
     this.cognitoService.signUp(this.user)
     .then(() => {
       this.loading = false;
@@ -51,6 +50,7 @@ export class SignUpComponent implements OnInit {
     this.loading = true;
     this.cognitoService.confirmSignUp(this.user)
     .then(() => {
+      this.apresentaCampos = false;
       this.router.navigate(['/login/signIn']);
     }).catch(() => {
       this.loading = false;
