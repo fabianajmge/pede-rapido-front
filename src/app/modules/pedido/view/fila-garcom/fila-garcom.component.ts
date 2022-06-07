@@ -56,13 +56,7 @@ export class FilaGarcomComponent implements OnInit {
   }
 
   fecharConta(idPedido: number) {
-    console.log('event ', idPedido);
-
-    let params = new HttpParams();
-    params = params.append('pedidoId', idPedido);
-    params = params.append('statusId', this.FECHADO);
-
-    this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
+    this.pedidoService.atualizarStatusPedido(idPedido, this.FECHADO).pipe(take(1))
     .subscribe({
       error: (error) => console.log(error)
     });

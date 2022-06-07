@@ -43,7 +43,7 @@ export class FilaCozinhaComponent implements OnInit {
 
     setTimeout(() => {
       this.start();
-    }, 200);
+    }, 600);
 
     this.cognitoService.getUser()
     .then((user: any) => {
@@ -78,28 +78,14 @@ export class FilaCozinhaComponent implements OnInit {
   }
 
   iniciarPreparacao(idPedido: number) {
-    console.log('event ', idPedido);
-
-    let params = new HttpParams();
-    params = params.append('pedidoId', idPedido);
-    params = params.append('statusId', this.EM_PREPARACAO);
-
-    this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
+    this.pedidoService.atualizarStatusPedido(idPedido, this.EM_PREPARACAO).pipe(take(1))
     .subscribe({
       error: (error) => console.log(error)
     });
   }
 
   finalizarPreparacao(idPedido: number) {
-    console.log('event ', idPedido);
-
-    let params = new HttpParams();
-    params = params.append('pedidoId', idPedido);
-    params = params.append('statusId', this.PREPARO_FINALIZADO);
-
-    console.log('teste');
-
-    this.pedidoService.atualizarStatusPedido(params).pipe(take(1))
+    this.pedidoService.atualizarStatusPedido(idPedido, this.PREPARO_FINALIZADO).pipe(take(1))
     .subscribe({
       error: (error) => console.log(error)
     });

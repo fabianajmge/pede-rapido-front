@@ -57,6 +57,7 @@ export class CognitoService {
 
   public signOut(): Promise<any> {
     return Auth.signOut().then(() => {
+      localStorage.setItem('token', '');
       this.authenticationSubject.next(false);
     });
   }

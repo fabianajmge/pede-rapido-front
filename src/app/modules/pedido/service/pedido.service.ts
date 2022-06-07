@@ -27,8 +27,8 @@ export class PedidoService {
     return this.http.get<ListPedido[]>(`${this.url}/pedido/emPreparacao`);
   }
 
-  atualizarStatusPedido(params: HttpParams): Observable<any> {
-    return this.http.put<any>(`${this.url}/pedido`, params);
+  atualizarStatusPedido(pedidoId: number, statusId: number): Observable<any> {
+    return this.http.put<any>(`${this.url}/pedido?pedidoId=${pedidoId}&statusId=${statusId}`, null);
   }
 
   solicitarConta(params: HttpParams): Observable<any> {
