@@ -1,12 +1,12 @@
 <div>
-    <h5>Pedidos aguardando fechamento da conta</h5>
+    <h5>Pedidos</h5>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Mesa</th>
           <th scope="col">Itens</th>
-          <th scope="col">Valor Total</th>
+          <th scope="col">Total</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -20,12 +20,11 @@
                 <tr *ngFor="let i of item.itensPedido">
                   <td>{{ i.quantidade }}</td>
                   <td>{{ i.titulo }}</td>
-                  <td>{{ i.observacao }}</td>
                 </tr>
               </tbody>
             </table>
           </td>
-          <td>{{ item.idMesa }}</td>
+          <td>{{ item.valorTotal | currency:'BRL' }}</td>
           <td><button (click)="fecharConta(item.idPedido)">Fechar conta</button></td>
         </tr>
       </tbody>

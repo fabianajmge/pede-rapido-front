@@ -1,5 +1,5 @@
+import { Pedido, ListPedido } from './../../model/pedido';
 import { CognitoService } from 'src/app/modules/login/service/cognito.service';
-import { HttpParams } from '@angular/common/http';
 import { take } from 'rxjs';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
 import { PedidoService } from './../../service/pedido.service';
@@ -13,9 +13,10 @@ import { environment } from 'src/environments/environment';
 })
 export class FilaGarcomComponent implements OnInit {
 
-  pedidosContaSolicitada: any[] = [];
+  pedidosContaSolicitada: ListPedido[] = [];
   urlWebSocket = environment.URL_WEBSOCKET;
   idRestaurante: number = 0;
+  itensPedido: Pedido[] = [];
 
   private FECHADO = 4;
 
@@ -33,7 +34,7 @@ export class FilaGarcomComponent implements OnInit {
 
     setTimeout(() => {
       this.start();
-    }, 200);
+    }, 600);
 
     this.cognitoService.getUser()
     .then((user: any) => {
@@ -44,7 +45,15 @@ export class FilaGarcomComponent implements OnInit {
   contaSolicitada(message: any): void {
     console.log('mensagem: ', message);
     this.pedidosContaSolicitada = JSON.parse(message.body);
+
     this.pedidosContaSolicitada = this.pedidosContaSolicitada.filter(p => p.idRestaurante == this.idRestaurante);
+
+    this.pedidosContaSolicitada.forEach(p => {
+      p.valorTotal = Number(p.itensPedido.reduce((sum, el) => sum + el.preco, 0).toFixed(2));
+    });
+    // this.valorTotal = this.pedidosContaSolicitada.itensPedido.reduce((sum, el) => sum += el.preco, 0);
+
+    // console.log('teste conta: ',  this.valorTotal);
   }
 
   start() {
@@ -61,5 +70,4 @@ export class FilaGarcomComponent implements OnInit {
       error: (error) => console.log(error)
     });
   }
-
 }

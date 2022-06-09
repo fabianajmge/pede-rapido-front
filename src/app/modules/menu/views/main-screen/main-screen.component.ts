@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { PedidoService } from './../../../pedido/service/pedido.service';
 import { ListPedido, Pedido } from './../../../pedido/model/pedido';
 import { take } from 'rxjs';
@@ -24,6 +23,7 @@ export class MainScreenComponent implements OnInit {
   itensPedido: Pedido[] = [];
   quantidadeInvalida = false;
   mesaInvalida = false;
+  contaSolicitada = false;
 
   constructor(private route: ActivatedRoute,
     private pedidoService: PedidoService) {
@@ -94,12 +94,12 @@ export class MainScreenComponent implements OnInit {
 
   solicitaConta() {
     this.enviaPedidoDesabilitado = true;
-
-    let params = new HttpParams();
-    params = params.append('mesaId', this.mesa);
-
-    this.pedidoService.solicitarConta(params).pipe(take(1))
+    this.pedidoService.solicitarConta(this.mesa).pipe(take(1))
     .subscribe({
+      next : () => {
+        this.pedidoEnviado = false,
+        this.contaSolicitada = true;
+      },
       error: (error) => console.log(error)
     });
   }

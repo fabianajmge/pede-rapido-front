@@ -2,6 +2,10 @@
     O pedido foi enviado para a cozinha!
 </div>
 
+<div class="alert alert-success texto-centralizado" *ngIf="contaSolicitada" role="alert">
+    Conta solicitada!
+</div>
+
 <div class="alert alert-danger texto-centralizado" role="alert" *ngIf="mesaComPedidoAnterior">
     Já existe um pedido atrelado a esta mesa!
 </div>

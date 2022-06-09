@@ -31,8 +31,8 @@ export class PedidoService {
     return this.http.put<any>(`${this.url}/pedido?pedidoId=${pedidoId}&statusId=${statusId}`, null);
   }
 
-  solicitarConta(params: HttpParams): Observable<any> {
-    return this.http.put<any>(`${this.url}/pedido/solicitarConta`, params);
+  solicitarConta(mesaId: number): Observable<any> {
+    return this.http.put<any>(`${this.url}/pedido/solicitarConta?mesaId=${mesaId}`, null);
   }
 
   getPedidosContaSolicitada(): Observable<ListPedido[]> {
