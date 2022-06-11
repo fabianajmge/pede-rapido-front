@@ -34,7 +34,7 @@ export class FilaGarcomComponent implements OnInit {
 
     setTimeout(() => {
       this.start();
-    }, 600);
+    }, 3000);
 
     this.cognitoService.getUser()
     .then((user: any) => {
@@ -51,9 +51,6 @@ export class FilaGarcomComponent implements OnInit {
     this.pedidosContaSolicitada.forEach(p => {
       p.valorTotal = Number(p.itensPedido.reduce((sum, el) => sum + el.preco, 0).toFixed(2));
     });
-    // this.valorTotal = this.pedidosContaSolicitada.itensPedido.reduce((sum, el) => sum += el.preco, 0);
-
-    // console.log('teste conta: ',  this.valorTotal);
   }
 
   start() {

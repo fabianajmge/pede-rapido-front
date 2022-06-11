@@ -1,6 +1,5 @@
 import { CognitoService } from 'src/app/modules/login/service/cognito.service';
 import { environment } from 'src/environments/environment';
-import { HttpParams } from '@angular/common/http';
 import { WebSocketConnector } from './../../../../websocket/websocketconnector';
 import { take } from 'rxjs';
 import { PedidoService } from './../../service/pedido.service';
@@ -43,7 +42,7 @@ export class FilaCozinhaComponent implements OnInit {
 
     setTimeout(() => {
       this.start();
-    }, 600);
+    }, 3000);
 
     this.cognitoService.getUser()
     .then((user: any) => {
